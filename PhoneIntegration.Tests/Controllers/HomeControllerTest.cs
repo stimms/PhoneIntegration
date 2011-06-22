@@ -22,7 +22,7 @@ namespace PhoneIntegration.Tests.Controllers
             ViewResult result = controller.Index() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Welcome to ASP.NET MVC!", result.ViewBag.Message);
+            Assert.AreEqual("Welcome to Phone Box", result.ViewBag.Message);
         }
 
         [TestMethod]
