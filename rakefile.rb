@@ -20,7 +20,7 @@ task :test => ["test:all"]
 namespace :build do
 	desc "Build the project"
 	msbuild :all => ["util:update_version"] do |msb|
-		msb.properties :configuration => configuration, :OutDir => "output/"
+		msb.properties :configuration => configuration, :OutDir => "#{File.dirname(__FILE__)}/output/"
 		msb.targets :Clean, :Build
 		msb.solution = solution_file
 		
@@ -46,7 +46,7 @@ end
 namespace :test do
 	desc "Run tests"
 	task :all => ["build:all"] do
-		tests = FileList["**/bin/**/*.Test*.dll"].join " "
+		tests = FileList["output/*Test*.dll"].join " "
 		print "Running tests from #{tests}"
 		system "'#{gallio_test_runner}' #{tests}"		
 	end
